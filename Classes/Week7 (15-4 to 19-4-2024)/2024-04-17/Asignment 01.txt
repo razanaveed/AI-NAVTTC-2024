@@ -1,0 +1,22 @@
+Assignment 01:
+Study the Random forest algorithm for Regression and Classification
+
+You Assignment Must have:
+1. Theoritical Explanation to Random Forest along with examples
+2. Visualization of the Random Forest (if Any)
+3. Code Along with Explanation
+4. Use Cases of Random Forest 
+5. Limnitations of Random Forest
+6. When not to use the random forest algorithm
+
+
+It must be Hand written and well mannered 
+
+
+
+
+
+
+
+
+

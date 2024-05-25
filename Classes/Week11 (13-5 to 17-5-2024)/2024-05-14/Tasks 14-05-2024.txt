@@ -1,0 +1,12 @@
+Tasks: 14-05-2024
+==>Pandas
+Load a CSV file containing sales data into a DataFrame and explore basic statistics such as mean, median, standard deviation, etc., for numerical columns. Also, inspect the first few rows of the DataFrame to understand its structure.
+
+===>NLP
+1. Perform Word and Sentence Tokenization, also classify NERs.
+"I love my country, Pakistan. It has four Provinces."
+
+
+===>Machine Learning
+2. Load Iris Dataset and Perform Classification using Decision Trees.
+3. Perform PCA, on the Iris Dataset as well.

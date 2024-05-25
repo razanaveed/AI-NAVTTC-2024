@@ -1,0 +1,189 @@
+import re
+import string
+
+def preprocess_text(text):
+    # Convert text to lowercase
+    text = text.lower()
+
+    # Remove numbers
+    text = re.sub(r'\d+', '', text)
+
+    # Remove punctuation
+    text = text.translate(str.maketrans('', '', string.punctuation))
+
+    # Remove extra white spaces
+    text = " ".join(text.split())
+
+    return text
+
+# Example usage
+raw_text = "Hello! This is a sample text with 123 numbers and punctuation!!!"
+clean_text = preprocess_text(raw_text)
+print(clean_text)
+
+
+from nltk.tokenize import word_tokenize, sent_tokenize
+
+# Tokenize into words
+words = word_tokenize(clean_text)
+print("Tokenized Words:", words)
+
+# Tokenize into sentences
+sentences = sent_tokenize(clean_text)
+print("Tokenized Sentences:", sentences)
+
+
+
+import nltk
+from nltk.tokenize import word_tokenize
+from nltk import pos_tag
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+# Sample text
+sample_text = "John likes to play soccer."
+
+# Tokenize the text into words
+words = word_tokenize(sample_text)
+
+# Perform POS tagging
+pos_tags = pos_tag(words)
+print("POS Tags:", pos_tags)
+
+
+import nltk
+import matplotlib.pyplot as plt
+from nltk.tokenize import word_tokenize
+from nltk import pos_tag
+from collections import Counter
+
+# Sample text
+sample_text = "John likes to play soccer and watch movies."
+
+# Tokenize the text into words
+words = word_tokenize(sample_text)
+
+# Perform POS tagging
+pos_tags = pos_tag(words)
+
+# Extract POS tags
+pos_categories = [tag[1] for tag in pos_tags]
+
+# Count POS categories
+pos_counts = Counter(pos_categories)
+
+# Plotting the POS distribution
+plt.figure(figsize=(8, 6))
+plt.bar(pos_counts.keys(), pos_counts.values())
+plt.title("POS Tag Distribution")
+plt.xlabel("POS Tags")
+plt.ylabel("Count")
+plt.show()
+
+import spacy
+from spacy import displacy
+
+# Load the English language model
+nlp = spacy.load("en_core_web_sm")
+
+# Sample text containing named entities
+sample_text = "Imaran Khan is the PM of Pakistan"
+
+# Process the text using spaCy
+doc = nlp(sample_text)
+
+# Visualize named entities using displaCy
+displacy.render(doc, style="ent", jupyter=True)
+
+
+import spacy
+from spacy import displacy
+
+# Load the English language model
+nlp = spacy.load("en_core_web_sm")
+
+# Example sentence
+sentence = "The cat sat on the mat."
+
+# Process the sentence with spaCy
+doc = nlp(sentence)
+
+# Visualize the syntactic dependencies
+displacy.render(doc, style="dep", jupyter=True)
+
+
+
+# Customizing dependency visualization
+options = {"compact": True, "color": "blue", "bg": "#ffffff",
+           "font": "Source Sans Pro"}
+
+displacy.render(doc, style="dep", jupyter=True, options=options)
+
+
+
+import matplotlib.pyplot as plt
+
+# Dictionary mapping POS tags to their complete names and definitions
+pos_tags_info = {
+    'CC': {'name': 'Coordinating conjunction', 'definition': 'Joins words, phrases, or clauses together (e.g., "and", "but", "or").'},
+    'CD': {'name': 'Cardinal number', 'definition': 'Represents numerical digits (e.g., "one", "two", "3", "99").'},
+    'DT': {'name': 'Determiner', 'definition': 'Specifies or identifies a noun (e.g., "the", "this", "each", "some").'},
+    'EX': {'name': 'Existential there', 'definition': 'Indicates the existence of something (e.g., "there is", "there are").'},
+    'FW': {'name': 'Foreign word', 'definition': 'Represents words borrowed from other languages (e.g., "rendezvous", "fiancé").'},
+    'IN': {'name': 'Preposition or subordinating conjunction', 'definition': 'Links nouns, pronouns, or phrases to other words in a sentence (e.g., "in", "on", "at", "since").'},
+    'JJ': {'name': 'Adjective', 'definition': 'Describes or modifies a noun (e.g., "big", "beautiful", "green").'},
+    'JJR': {'name': 'Adjective, comparative', 'definition': 'Compares two things using an adjective (e.g., "bigger", "stronger", "more beautiful").'},
+    'JJS': {'name': 'Adjective, superlative', 'definition': 'Compares more than two things using an adjective (e.g., "biggest", "strongest", "most beautiful").'},
+    'LS': {'name': 'List item marker', 'definition': 'Represents a list item in numbered or bulleted format (e.g., "1.", "2.", "•").'},
+    'MD': {'name': 'Modal', 'definition': 'Indicates likelihood, possibility, permission, or obligation (e.g., "can", "could", "might", "must").'},
+    'NN': {'name': 'Noun, singular or mass', 'definition': 'Represents a singular or mass noun (e.g., "dog", "cat", "table", "happiness").'},
+    'NNS': {'name': 'Noun, plural', 'definition': 'Represents a plural noun (e.g., "dogs", "cats", "tables", "happinesses").'},
+    'NNP': {'name': 'Proper noun, singular', 'definition': 'Represents a singular proper noun (e.g., "John", "London", "Facebook").'},
+    'NNPS': {'name': 'Proper noun, plural', 'definition': 'Represents a plural proper noun (e.g., "Smiths", "Mendelssohns", "Facebooks").'},
+    'PDT': {'name': 'Predeterminer', 'definition': 'Modifies a noun phrase before articles (e.g., "all", "both", "half").'},
+    'POS': {'name': 'Possessive ending', 'definition': 'Indicates possession or ownership (e.g., "\'s", "s\'").'},
+    'PRP': {'name': 'Personal pronoun', 'definition': 'Represents a pronoun (e.g., "I", "you", "he", "she", "it", "we", "they").'},
+    'PRP$': {'name': 'Possessive pronoun', 'definition': 'Represents a possessive pronoun (e.g., "my", "your", "his", "her", "its", "our", "their").'},
+    'RB': {'name': 'Adverb', 'definition': 'Describes or modifies a verb, adjective, or other adverb (e.g., "quickly", "very", "well").'},
+    'RBR': {'name': 'Adverb, comparative', 'definition': 'Compares two things using an adverb (e.g., "faster", "more quickly").'},
+    'RBS': {'name': 'Adverb, superlative', 'definition': 'Compares more than two things using an adverb (e.g., "fastest", "most quickly").'},
+    'RP': {'name': 'Particle', 'definition': 'Represents a word that has grammatical function but does not fit into other categories (e.g., "up", "out", "about").'},
+    'SYM': {'name': 'Symbol', 'definition': 'Represents symbols or icons (e.g., "$", "%", "&", "©").'},
+    'TO': {'name': 'to', 'definition': 'Acts as a preposition ("to") or part of an infinitive verb form (e.g., "to go", "to dance").'},
+    'UH': {'name': 'Interjection', 'definition': 'Expresses emotion or exclamation (e.g., "wow", "oh", "alas").'},
+    'VB': {'name': 'Verb, base form', 'definition': 'Represents a base form (infinitive) of a verb (e.g., "eat", "go", "play").'},
+    'VBD': {'name': 'Verb, past tense', 'definition': 'Represents the past tense form of a verb (e.g., "ate", "went", "played").'},
+    'VBG': {'name': 'Verb, gerund or present participle', 'definition': 'Represents a verb form ending in "-ing" used as a gerund or present participle (e.g., "eating", "going", "playing").'},
+    'VBN': {'name': 'Verb, past participle', 'definition': 'Represents the past participle form of a verb (e.g., "eaten", "gone", "played").'},
+    'VBP': {'name': 'Verb, non-3rd person singular present', 'definition': 'Represents the base form of a verb used in non-3rd person singular present tense (e.g., "eat", "go", "play").'}
+}
+
+# Extracting data for visualization
+pos_tags = list(pos_tags_info.keys())
+names = [pos_tags_info[tag]['name'] for tag in pos_tags]
+definitions = [pos_tags_info[tag]['definition'] for tag in pos_tags]
+
+# Plotting POS tags with their complete names and definitions
+plt.figure(figsize=(30, 12))
+plt.barh(names, pos_tags, color='skyblue')
+plt.xlabel('Complete Name of POS Tag')
+plt.ylabel('POS Tag')
+plt.title('Parts-of-Speech Tags with Complete Names')
+plt.show()
+
+
+from nltk.stem import WordNetLemmatizer
+from nltk.tokenize import word_tokenize
+nltk.download('wordnet')
+# Sample text
+sample_text = "These guys are roaming around"
+
+# Tokenize the text into words
+words = word_tokenize(sample_text)
+
+# Initialize WordNet lemmatizer
+lemmatizer = WordNetLemmatizer()
+
+# Lemmatize each word
+lemmatized_words = [lemmatizer.lemmatize(word) for word in words]
+
+print("Lemmatized Words:", lemmatized_words)

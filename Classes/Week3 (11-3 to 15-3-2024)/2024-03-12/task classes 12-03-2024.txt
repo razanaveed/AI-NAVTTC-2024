@@ -1,0 +1,19 @@
+Task # 1
+Continue the Last Classes i.e Car
+
+Method Implementation
+
+Write methods within your classes to define the behaviors or actions that objects of those classes can perform. For instance, if you have a "Car" class, implement methods like "start_engine()", "accelerate()", "brake()", etc.
+
+Conditions: If Speed > 80 Apply Break
+
+If Speed < 50 Accelerate
+
+If Speed == 0 Start Engine
+
+Speed must be user define Input. (Integer)
+
+
+
+Task # 2
+Apply Inheritance on above class, add Bike Class
